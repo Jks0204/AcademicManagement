@@ -11,6 +11,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -112,8 +114,13 @@ public class BookRent extends JPanel{
 			public void mouseEntered(MouseEvent e) {}
 			public void mouseExited(MouseEvent e) {}
 		});
-						
-		btnRent=new JButton("대출");
+					
+		JLabel lblRent = new JLabel("대출");
+		lblRent.setBounds(50,400,120,20);
+		this.add(lblRent);
+		ImageIcon imgRent = new ImageIcon("img/rent.png");
+		btnRent=new JButton(imgRent);
+		btnRent.setVerticalTextPosition(JButton.BOTTOM);
 		btnRent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JDialog dialog=new RentReturn();
@@ -121,10 +128,16 @@ public class BookRent extends JPanel{
 				dialog.setVisible(true);
 			}
 		});
-		btnRent.setBounds(10,400,120,80);
+		btnRent.setBounds(10,420,120,80);
 		this.add(btnRent);
 		
-		btnReturn=new JButton("반납");
+		
+		JLabel lblReturn = new JLabel("반납");
+		lblReturn.setBounds(180,400,120,20);
+		this.add(lblReturn);
+		ImageIcon imgReturn = new ImageIcon("img/return.png");
+		btnReturn=new JButton(imgReturn);
+		btnReturn.setVerticalTextPosition(JButton.BOTTOM);
 		btnReturn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -177,17 +190,21 @@ public class BookRent extends JPanel{
 				} 
 				
 			}});
-		btnReturn.setBounds(140,400,120,80);
+		btnReturn.setBounds(140,420,120,80);
 		this.add(btnReturn);
 		
-		btnReset=new JButton("새로고침");
+		JLabel lblRefresh = new JLabel("새로고침");
+		lblRefresh.setBounds(680,400,120,20);
+		this.add(lblRefresh);
+		ImageIcon imgRefresh = new ImageIcon("img/refresh.png");
+		btnReset=new JButton(imgRefresh);
+		btnReset.setVerticalTextPosition(JButton.BOTTOM);
 		btnReset.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				list();
 			}
 		});
-		
-		btnReset.setBounds(650,400,120,80);
+		btnReset.setBounds(650,420,120,80);
 		this.add(btnReset);
 		
 		this.setSize(780, 530);
