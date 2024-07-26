@@ -39,10 +39,14 @@ public class Student extends JPanel{
 	public Student() {
 		// Layout default: FlowLayout
 		
+		this.setLayout(null);
+		
 		lblID= new JLabel("학번");
 		add(lblID);
+		lblID.setBounds(10,10,30,20);
 		tfID= new JTextField(13); // 가로크기 지정
 		add(tfID);
+		tfID.setBounds(40,10,200,20);
 		btnSearch= new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			@Override
@@ -85,24 +89,33 @@ public class Student extends JPanel{
 				}
 			}});
 		add(btnSearch);
+		btnSearch.setBounds(250,10,100,20);
 		lblName= new JLabel("이름");
 		add(lblName);
+		lblName.setBounds(10,40,30,20);
 		tfName= new JTextField(20);
 		add(tfName);
+		tfName.setBounds(40,40,200,20);
 		lblDept= new JLabel("학과");
 		add(lblDept);
+		lblDept.setBounds(10,70,30,20);
 		tfDept= new JTextField(20);
 		add(tfDept);
+		tfDept.setBounds(40,70,200,20);
 		lblAddress= new JLabel("주소");
 		add(lblAddress);
+		lblAddress.setBounds(10,100,30,20);
 		tfAddress= new JTextField(20);
 		add(tfAddress);
+		tfAddress.setBounds(40,100,200,20);
 		
 		String[] colName={"학번","이름","학과","주소"};
 		model=new DefaultTableModel(colName,0); // model:데이터
 		table=new JTable(model);// table과 model 바인딩(binding)
-		table.setPreferredScrollableViewportSize(new Dimension (250,200)); // 가로, 세로크기
-		add(new JScrollPane(table)); // 스크롤바 구현
+		table.setPreferredScrollableViewportSize(new Dimension (720,330)); // 가로, 세로크기
+		JScrollPane tSP = new JScrollPane(table); // 스크롤바 구현
+		this.add(tSP);
+		tSP.setBounds(20,130,750,330);
 		
 		// 테이블을 클릭했을 때 해당 row 값들을 입력창에 출력
 		table.addMouseListener(new MouseListener() {
@@ -167,6 +180,7 @@ public class Student extends JPanel{
 				
 			}});
 		add(btnInsert);
+		btnInsert.setBounds(270,470,100,40);
 		
 		btnSelect=new JButton("목록");
 		btnSelect.addActionListener(new ActionListener() {
@@ -204,6 +218,7 @@ public class Student extends JPanel{
 			}
 		});
 		add(btnSelect);
+		btnSelect.setBounds(150,470,100,40);
 		
 		btnUpdate=new JButton("수정");
 		btnUpdate.addActionListener(new ActionListener() {
@@ -246,6 +261,7 @@ public class Student extends JPanel{
 				}
 			}});
 		add(btnUpdate);
+		btnUpdate.setBounds(390,470,100,40);
 		
 		btnDelete=new JButton("삭제");
 		btnDelete.addActionListener(new ActionListener() {
@@ -299,8 +315,9 @@ public class Student extends JPanel{
 				}
 			}});
 		add(btnDelete);
+		btnDelete.setBounds(510,470,100,40);
 		
-		this.setSize(280,500);
+		this.setSize(790,540);
 		this.setVisible(true);
 	}
 

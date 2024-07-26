@@ -3,6 +3,8 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,9 +35,20 @@ class MyDialog extends JDialog{
 	
 	public MyDialog(JFrame frame, String title) {
 		super(frame, title);
-		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new WindowListener() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(1);
+			}
+			public void windowClosed(WindowEvent e) {}
+			public void windowOpened(WindowEvent e) {}
+			public void windowIconified(WindowEvent e) {}
+			public void windowDeiconified(WindowEvent e) {}
+			public void windowActivated(WindowEvent e) {}
+			public void windowDeactivated(WindowEvent e) {}
+		});
 		// Frame Layout default: BorderLayout
-		this.setLayout(new FlowLayout()); // FlowLayout으로 변경
+		// FlowLayout으로 변경
+		this.setLayout(new FlowLayout());
 		
 		lblID=new JLabel("ID");
 		this.add(lblID);
@@ -91,18 +104,9 @@ class MyDialog extends JDialog{
 				return null;
 			}
 		});
-		this.setSize(170, 140);
 		
-		btnExit=new JButton("Exit");
-		this.add(btnExit);
-		btnExit.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.exit(1);
-			}
-			
-		});
 		this.setSize(170, 140);
+		setLocationRelativeTo(null);
 	}
 }
 
@@ -165,6 +169,7 @@ public class Haksa extends JFrame {
 		
 		this.setSize(800, 600);
 		this.setVisible(true);
+		setLocationRelativeTo(null);
 		
 		//로그인 다이얼로그 띄우기
 		dialog = new MyDialog(this,"로그인");
