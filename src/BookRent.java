@@ -118,7 +118,8 @@ public class BookRent extends JPanel{
 		JLabel lblRent = new JLabel("대출");
 		lblRent.setBounds(50,400,120,20);
 		this.add(lblRent);
-		ImageIcon imgRent = new ImageIcon("img/rent.png");
+//		ImageIcon imgRent = new ImageIcon("img/rent.png");
+		ImageIcon imgRent = new ImageIcon(getClass().getClassLoader().getResource("rent.png"));
 		btnRent=new JButton(imgRent);
 		btnRent.setVerticalTextPosition(JButton.BOTTOM);
 		btnRent.addActionListener(new ActionListener() {
@@ -135,7 +136,8 @@ public class BookRent extends JPanel{
 		JLabel lblReturn = new JLabel("반납");
 		lblReturn.setBounds(180,400,120,20);
 		this.add(lblReturn);
-		ImageIcon imgReturn = new ImageIcon("img/return.png");
+//		ImageIcon imgReturn = new ImageIcon("img/return.png");
+		ImageIcon imgReturn = new ImageIcon(getClass().getClassLoader().getResource("return.png"));
 		btnReturn=new JButton(imgReturn);
 		btnReturn.setVerticalTextPosition(JButton.BOTTOM);
 		btnReturn.addActionListener(new ActionListener() {
@@ -196,7 +198,8 @@ public class BookRent extends JPanel{
 		JLabel lblRefresh = new JLabel("새로고침");
 		lblRefresh.setBounds(680,400,120,20);
 		this.add(lblRefresh);
-		ImageIcon imgRefresh = new ImageIcon("img/refresh.png");
+//		ImageIcon imgRefresh = new ImageIcon("img/refresh.png");
+		ImageIcon imgRefresh = new ImageIcon(getClass().getClassLoader().getResource("refresh.png"));
 		btnReset=new JButton(imgRefresh);
 		btnReset.setVerticalTextPosition(JButton.BOTTOM);
 		btnReset.addActionListener(new ActionListener(){

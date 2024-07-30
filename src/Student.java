@@ -236,7 +236,7 @@ public class Student extends JPanel{
 					//Application에서 sql실행시 기본적으로 auto commit.
 
 					//update
-					stmt.executeUpdate("update student set name='"+tfName.getText()+"', dept='"+tfDept.getText()+"' where id='"+tfID.getText()+"'");
+					stmt.executeUpdate("update student set name='"+tfName.getText()+"', dept='"+tfDept.getText()+"', address='"+tfAddress.getText()+"' where id='"+tfID.getText()+"'");
 
 					//select
 					ResultSet rs=stmt.executeQuery("select * from student");//select문 실행.
@@ -266,53 +266,71 @@ public class Student extends JPanel{
 		btnDelete=new JButton("삭제");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int result = JOptionPane.showConfirmDialog(null, "정말로 삭제 하시겠습니까?","삭제",JOptionPane.YES_NO_OPTION);
-				// 결과값이 정수로 나옴, yes:0, no:1
+				
+				Connection conn=null;
+				try {
+					//oracle jdbc driver load
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					//Connection
+					conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","hong");
+					
+					Statement stmt=conn.createStatement(); // statement객체 생성
+					
+					ResultSet rs=stmt.executeQuery("select id from rentbook where id= '"+tfID.getText()+"'" );
 
-				if (result==JOptionPane.YES_OPTION) {
-					Connection conn=null;
-					try {
-						//oracle jdbc driver load
-						Class.forName("oracle.jdbc.driver.OracleDriver");
-						//Connection
-						conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","ora_user","hong");
-						System.out.println("연결완료");
-						
-						Statement stmt=conn.createStatement(); // statement객체 생성
-						
-						//Application에서 sql실행시 기본적으로 auto commit.
-						
-						//delete
-						stmt.executeUpdate("delete from student where id='"+tfID.getText()+"'");
-						
-						//select
-						ResultSet rs=stmt.executeQuery("select * from student");//select문 실행.
-						// rs는 cursor역할. 한행씩 while문으로 fetch
-						
-						//목록 초기화
-						model.setRowCount(0);
-						while(rs.next()) {
-							String[] row=new String[4];
-							row[0]=rs.getString("id");
-							row[1]=rs.getString("name");
-							row[2]=rs.getString("dept");
-							row[3]=rs.getString("address");
-							model.addRow(row);
-						}
-						
-						//입력항목 초기화
-						tfID.setText(null);
-						tfName.setText(null);
-						tfDept.setText(null);
-						tfAddress.setText(null);
-						
+					if(rs.next()) {
+						JOptionPane.showMessageDialog(table, "대출 기록이 있는 사람의 정보는 지울 수 없습니다.", "대출기록보유",JOptionPane.WARNING_MESSAGE);
 						rs.close();
 						stmt.close();
-						conn.close();//연결해제
-					}catch(Exception e1) {
-						e1.printStackTrace();
-					}			
+						conn.close();
+		
+					} else {
+						int result = JOptionPane.showConfirmDialog(null, "정말로 삭제 하시겠습니까?","삭제",JOptionPane.YES_NO_OPTION);
+						// 결과값이 정수로 나옴, yes:0, no:1
+						
+						if (result==JOptionPane.YES_OPTION) {
+							try {	
+								Statement stmt1=conn.createStatement();
+								
+								//delete
+								stmt1.executeUpdate("delete from student where id='"+tfID.getText()+"'");
+								
+								//select
+								ResultSet rs1=stmt1.executeQuery("select * from student");//select문 실행.
+								// rs는 cursor역할. 한행씩 while문으로 fetch
+								
+								//목록 초기화
+								model.setRowCount(0);
+								while(rs1.next()) {
+									String[] row=new String[4];
+									row[0]=rs1.getString("id");
+									row[1]=rs1.getString("name");
+									row[2]=rs1.getString("dept");
+									row[3]=rs1.getString("address");
+									model.addRow(row);
+								}
+								
+								//입력항목 초기화
+								tfID.setText(null);
+								tfName.setText(null);
+								tfDept.setText(null);
+								tfAddress.setText(null);
+								
+								rs.close();
+								stmt.close();
+								rs1.close();
+								stmt1.close();
+								conn.close();
+							} catch(Exception e1) {
+								e1.printStackTrace();
+							}			
+						}
+						
+					}
+				} catch(Exception e1) {
+					e1.printStackTrace();
 				}
+								
 			}});
 		add(btnDelete);
 		btnDelete.setBounds(510,470,100,40);

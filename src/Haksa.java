@@ -160,7 +160,9 @@ public class Haksa extends JFrame {
 		this.panel.setBackground(Color.LIGHT_GRAY);
 		this.add(panel);
 		
-		ImageIcon icon = new ImageIcon("img/library.jpg");
+//		ImageIcon icon = new ImageIcon("img/library.jpg");
+		ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("library.jpg"));
+		
 		Image img=icon.getImage();
 		Image fixImg = img.getScaledInstance(800, 600, img.SCALE_SMOOTH);
 		ImageIcon fixIcon = new ImageIcon(fixImg);
