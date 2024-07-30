@@ -70,7 +70,7 @@ public class BookRent extends JPanel{
 				
 				// 동적쿼리작성, 동적쿼리: 실행시에 쿼리가 바뀌는 것
 				if(cb.getSelectedIndex()==0) { //전체
-					query+=" order by student.id";
+					query+=" order by rentbook.rdate";
 				}else if(cb.getSelectedIndex()==1) { //국문학과
 					query+=" and student.dept='국문학과' order by rentbook.rdate";
 				}else if(cb.getSelectedIndex()==2) { //물리학과

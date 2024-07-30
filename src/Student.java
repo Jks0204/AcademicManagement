@@ -157,7 +157,7 @@ public class Student extends JPanel{
 					stmt.executeUpdate("insert into student values('"+tfID.getText()+"','"+tfName.getText()+"','"+tfDept.getText()+"','"+tfAddress.getText()+"')"); 
 					
 					//select
-					ResultSet rs=stmt.executeQuery("select * from student");//select문 실행.
+					ResultSet rs=stmt.executeQuery("select * from student order by id");//select문 실행.
 					// rs는 cursor역할. 한행씩 while문으로 fetch
 					
 					//목록 초기화
@@ -195,7 +195,7 @@ public class Student extends JPanel{
 					Statement stmt=conn.createStatement(); // statement객체 생성
 
 					//select
-					ResultSet rs=stmt.executeQuery("select * from student");//select문 실행.
+					ResultSet rs=stmt.executeQuery("select * from student order by id");//select문 실행.
 					// rs는 cursor역할. 한행씩 while문으로 fetch
 					
 					//목록 초기화
@@ -239,7 +239,7 @@ public class Student extends JPanel{
 					stmt.executeUpdate("update student set name='"+tfName.getText()+"', dept='"+tfDept.getText()+"', address='"+tfAddress.getText()+"' where id='"+tfID.getText()+"'");
 
 					//select
-					ResultSet rs=stmt.executeQuery("select * from student");//select문 실행.
+					ResultSet rs=stmt.executeQuery("select * from student order by id");//select문 실행.
 					// rs는 cursor역할. 한행씩 while문으로 fetch
 					
 					//목록 초기화
@@ -296,7 +296,7 @@ public class Student extends JPanel{
 								stmt1.executeUpdate("delete from student where id='"+tfID.getText()+"'");
 								
 								//select
-								ResultSet rs1=stmt1.executeQuery("select * from student");//select문 실행.
+								ResultSet rs1=stmt1.executeQuery("select * from student order by id");//select문 실행.
 								// rs는 cursor역할. 한행씩 while문으로 fetch
 								
 								//목록 초기화
