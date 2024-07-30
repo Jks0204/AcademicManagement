@@ -56,7 +56,7 @@ public class BookRent extends JPanel{
 		this.add(lblDepartment);
 		
 		//ComboBox만들기
-		String[] dept={"전체","국문학과","영문학과","컴퓨터공학"}; // 목록
+		String[] dept={"전체","국문학과","물리학과","컴퓨터공학과"}; // 목록
 		JComboBox cbDept=new JComboBox(dept);
 		cbDept.addActionListener(new ActionListener() {
 			@Override
@@ -73,10 +73,10 @@ public class BookRent extends JPanel{
 					query+=" order by student.id";
 				}else if(cb.getSelectedIndex()==1) { //국문학과
 					query+=" and student.dept='국문학과' order by rentbook.rdate";
-				}else if(cb.getSelectedIndex()==2) { //영문학과
-					query+=" and student.dept='영문학과' order by rentbook.rdate";
-				}else if(cb.getSelectedIndex()==3) { //컴퓨터공학
-					query+=" and student.dept='컴퓨터공학' order by rentbook.rdate";
+				}else if(cb.getSelectedIndex()==2) { //물리학과
+					query+=" and student.dept='물리학과' order by rentbook.rdate";
+				}else if(cb.getSelectedIndex()==3) { //컴퓨터공학과
+					query+=" and student.dept='컴퓨터공학과' order by rentbook.rdate";
 				}	
 //				System.out.println(query);
 				
