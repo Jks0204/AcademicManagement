@@ -129,7 +129,7 @@ public class BookRent extends JPanel{
 				dialog.setVisible(true);
 			}
 		});
-		btnRent.setBounds(10,420,120,80);
+		btnRent.setBounds(10,420,120,70);
 		this.add(btnRent);
 		
 		
@@ -192,7 +192,7 @@ public class BookRent extends JPanel{
 				} 
 				
 			}});
-		btnReturn.setBounds(140,420,120,80);
+		btnReturn.setBounds(140,420,120,70);
 		this.add(btnReturn);
 		
 		JLabel lblRefresh = new JLabel("새로고침");
@@ -207,7 +207,7 @@ public class BookRent extends JPanel{
 				list();
 			}
 		});
-		btnReset.setBounds(650,420,120,80);
+		btnReset.setBounds(650,420,120,70);
 		this.add(btnReset);
 		
 		this.setSize(780, 530);
